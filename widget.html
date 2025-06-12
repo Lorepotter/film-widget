@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      color: white;
+      height: 100%;
+      overflow: hidden;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    .top {
+      flex: 1;
+      background: url("https://i.ibb.co/7N8qcJW/CIAL.jpg") no-repeat center center;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      text-align: center;
+    }
+    .top .text {
+      background-color: rgba(0,0,0,0.5);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .title {
+      font-weight: bold;
+      font-size: 25px;
+      margin-bottom: 5px;
+    }
+    .info {
+      font-size: 20px;
+      line-height: 1.4em;
+    }
+    .bottom {
+      flex: 1;
+    }
+    .bottom img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="top">
+    <div class="text" id="film-text">
+      <!-- Text injected by script -->
+    </div>
+  </div>
+  <div class="bottom">
+    <img id="copertina" src="" alt="Copertina">
+  </div>
+</div>
+<script>
+  async function loadFilm() {
+    try {
+      const res = await fetch("https://raw.githubusercontent.com/Lorepotter/film-widget/main/database_films.json");
+      const data = await res.json();
+      const film = data[Math.floor(Math.random() * data.length)];
+
+      document.getElementById("copertina").src = film.copertina;
+      document.getElementById("film-text").innerHTML = `
+        <div class="title">${film.titolo}</div>
+        <div class="info">
+          Data di uscita: ${film.dataUscita}<br>
+          Regista: ${film.regista}<br>
+          "${film.citazione}"
+        </div>
+      `;
+    } catch (e) {
+      document.getElementById("film-text").innerText = "Errore nel caricamento.";
+    }
+  }
+  loadFilm();
+</script>
+</body>
+</html>
