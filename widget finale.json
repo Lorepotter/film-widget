@@ -1,0 +1,46 @@
+{
+  "type": "vertical",
+  "padding": 0,
+  "spacing": 0,
+  "background": {
+    "type": "image",
+    "url": "https://i.ibb.co/7N8qcJW/CIAL.jpg",
+    "fit": "cover"
+  },
+  "children": [
+    {
+      "type": "spacer",
+      "flex": 1
+    },
+    {
+      "type": "text",
+      "text": "{{item.titolo}}\nData di uscita: {{item.dataUscita}}\nRegista: {{item.regista}}\n\"{{item.citazione}}\"",
+      "font_size": 20,
+      "font_weight": "bold",
+      "color": "#FFFFFF",
+      "font_family": "System",
+      "multiline": true,
+      "shadow": true,
+      "alignment": "center"
+    },
+    {
+      "type": "image",
+      "url": "{{item.copertina}}",
+      "aspect_mode": "fit",
+      "height": 100,
+      "corner_radius": 0,
+      "padding": {
+        "top": 0,
+        "bottom": 0
+      }
+    }
+  ],
+  "data": {
+    "type": "json",
+    "url": "https://raw.githubusercontent.com/Lorepotter/film-widget/refs/heads/main/database_films.json",
+    "refresh_interval": 1800,
+    "transform": {
+      "type": "random"
+    }
+  }
+}
